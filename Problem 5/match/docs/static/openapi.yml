@@ -19205,6 +19205,202 @@ paths:
               parameters.
       tags:
         - Msg
+  /match.match.Msg/CreateMatchInfo:
+    post:
+      operationId: MatchMatchMsg_CreateMatchInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              matchdate:
+                type: string
+              home:
+                type: string
+              away:
+                type: string
+              stadium:
+                type: string
+              spectator:
+                type: integer
+                format: int32
+      tags:
+        - Msg
+  /match.match.Msg/DeleteMatchInfo:
+    post:
+      operationId: MatchMatchMsg_DeleteMatchInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              id:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /match.match.Msg/UpdateMatchInfo:
+    post:
+      operationId: MatchMatchMsg_UpdateMatchInfo
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              id:
+                type: string
+                format: uint64
+              matchdate:
+                type: string
+              home:
+                type: string
+              away:
+                type: string
+              stadium:
+                type: string
+              spectators:
+                type: integer
+                format: int32
+      tags:
+        - Msg
+  /match.match.Msg/UpdateParams:
+    post:
+      summary: |-
+        UpdateParams defines a (governance) operation for updating the module
+        parameters. The authority defaults to the x/gov module account.
+      operationId: MatchMatchMsg_UpdateParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: >-
+              MsgUpdateParamsResponse defines the response structure for
+              executing a
+
+              MsgUpdateParams message.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          description: MsgUpdateParams is the Msg/UpdateParams request type.
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              authority:
+                type: string
+                description: >-
+                  authority is the address that controls the module (defaults to
+                  x/gov unless overwritten).
+              params:
+                description: 'NOTE: All parameters must be supplied.'
+                type: object
+            description: MsgUpdateParams is the Msg/UpdateParams request type.
+      tags:
+        - Msg
   /match/match/match_info:
     get:
       operationId: MatchMatchQuery_MatchInfoAll
@@ -19230,6 +19426,11 @@ paths:
                       type: string
                     creator:
                       type: string
+                    stadium:
+                      type: string
+                    spectator:
+                      type: integer
+                      format: int32
               pagination:
                 type: object
                 properties:
@@ -19359,6 +19560,11 @@ paths:
                     type: string
                   creator:
                     type: string
+                  stadium:
+                    type: string
+                  spectator:
+                    type: integer
+                    format: int32
         default:
           description: An unexpected error response.
           schema:
@@ -19421,192 +19627,6 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /match.match.Msg/CreateMatchInfo:
-    post:
-      operationId: MatchMatchMsg_CreateMatchInfo
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uint64
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              matchdate:
-                type: string
-              home:
-                type: string
-              away:
-                type: string
-      tags:
-        - Msg
-  /match.match.Msg/DeleteMatchInfo:
-    post:
-      operationId: MatchMatchMsg_DeleteMatchInfo
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              id:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /match.match.Msg/UpdateMatchInfo:
-    post:
-      operationId: MatchMatchMsg_UpdateMatchInfo
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              id:
-                type: string
-                format: uint64
-              matchdate:
-                type: string
-              home:
-                type: string
-              away:
-                type: string
-      tags:
-        - Msg
-  /match.match.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: MatchMatchMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
 definitions:
   cosmos.auth.v1beta1.MsgUpdateParams:
     type: object
@@ -27324,6 +27344,79 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
+  match.match.MsgCreateMatchInfo:
+    type: object
+    properties:
+      creator:
+        type: string
+      matchdate:
+        type: string
+      home:
+        type: string
+      away:
+        type: string
+      stadium:
+        type: string
+      spectator:
+        type: integer
+        format: int32
+  match.match.MsgCreateMatchInfoResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+  match.match.MsgDeleteMatchInfo:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+  match.match.MsgDeleteMatchInfoResponse:
+    type: object
+  match.match.MsgUpdateMatchInfo:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+      matchdate:
+        type: string
+      home:
+        type: string
+      away:
+        type: string
+      stadium:
+        type: string
+      spectators:
+        type: integer
+        format: int32
+  match.match.MsgUpdateMatchInfoResponse:
+    type: object
+  match.match.MsgUpdateParams:
+    type: object
+    properties:
+      authority:
+        type: string
+        description: >-
+          authority is the address that controls the module (defaults to x/gov
+          unless overwritten).
+      params:
+        description: 'NOTE: All parameters must be supplied.'
+        type: object
+    description: MsgUpdateParams is the Msg/UpdateParams request type.
+  match.match.MsgUpdateParamsResponse:
+    type: object
+    description: |-
+      MsgUpdateParamsResponse defines the response structure for executing a
+      MsgUpdateParams message.
+  match.match.Params:
+    type: object
+    description: Params defines the parameters for the module.
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -27415,9 +27508,11 @@ definitions:
         type: string
       creator:
         type: string
-  match.match.Params:
-    type: object
-    description: Params defines the parameters for the module.
+      stadium:
+        type: string
+      spectator:
+        type: integer
+        format: int32
   match.match.QueryAllMatchInfoResponse:
     type: object
     properties:
@@ -27437,6 +27532,11 @@ definitions:
               type: string
             creator:
               type: string
+            stadium:
+              type: string
+            spectator:
+              type: integer
+              format: int32
       pagination:
         type: object
         properties:
@@ -27480,6 +27580,11 @@ definitions:
             type: string
           creator:
             type: string
+          stadium:
+            type: string
+          spectator:
+            type: integer
+            format: int32
   match.match.QueryParamsResponse:
     type: object
     properties:
@@ -27487,63 +27592,3 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  match.match.MsgCreateMatchInfo:
-    type: object
-    properties:
-      creator:
-        type: string
-      matchdate:
-        type: string
-      home:
-        type: string
-      away:
-        type: string
-  match.match.MsgCreateMatchInfoResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  match.match.MsgDeleteMatchInfo:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  match.match.MsgDeleteMatchInfoResponse:
-    type: object
-  match.match.MsgUpdateMatchInfo:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      matchdate:
-        type: string
-      home:
-        type: string
-      away:
-        type: string
-  match.match.MsgUpdateMatchInfoResponse:
-    type: object
-  match.match.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  match.match.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.

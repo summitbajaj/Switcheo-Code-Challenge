@@ -8,12 +8,14 @@ import (
 
 var _ sdk.Msg = &MsgCreateMatchInfo{}
 
-func NewMsgCreateMatchInfo(creator string, matchdate string, home string, away string) *MsgCreateMatchInfo {
+func NewMsgCreateMatchInfo(creator string, matchdate string, home string, away string, stadium string, spectator int32) *MsgCreateMatchInfo {
 	return &MsgCreateMatchInfo{
 		Creator:   creator,
 		Matchdate: matchdate,
 		Home:      home,
 		Away:      away,
+		Stadium:   stadium,
+		Spectator: spectator,
 	}
 }
 
@@ -27,13 +29,15 @@ func (msg *MsgCreateMatchInfo) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateMatchInfo{}
 
-func NewMsgUpdateMatchInfo(creator string, id uint64, matchdate string, home string, away string) *MsgUpdateMatchInfo {
+func NewMsgUpdateMatchInfo(creator string, id uint64, matchdate string, home string, away string, stadium string, spectator int32) *MsgUpdateMatchInfo {
 	return &MsgUpdateMatchInfo{
 		Id:        id,
 		Creator:   creator,
 		Matchdate: matchdate,
 		Home:      home,
 		Away:      away,
+		Stadium:   stadium,
+		Spectator: spectator,
 	}
 }
 

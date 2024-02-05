@@ -9,4 +9,6 @@ message MatchInfo {
   string home = 3; 
   string away = 4; 
   string creator = 5;
+  string stadium = 6;
+  int32 spectator = 7;
 }

@@ -46,6 +46,8 @@ message MsgCreateMatchInfo {
   string matchdate = 2;
   string home      = 3;
   string away      = 4;
+  string stadium = 6;
+  int32 spectator = 7;
 }
 
 message MsgCreateMatchInfoResponse {
@@ -59,6 +61,8 @@ message MsgUpdateMatchInfo {
   string matchdate = 3;
   string home      = 4;
   string away      = 5;
+  string stadium = 6;
+  int32 spectator = 7;
 }
 
 message MsgUpdateMatchInfoResponse {}
