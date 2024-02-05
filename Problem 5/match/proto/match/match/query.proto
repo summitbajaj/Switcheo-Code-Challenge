@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package match.match;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "match/match/params.proto";
+import "match/match/match_info.proto";
+
+option go_package = "match/x/match/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/match/match/params";
+  
+  }
+  
+  // Queries a list of MatchInfo items.
+  rpc MatchInfo    (QueryGetMatchInfoRequest) returns (QueryGetMatchInfoResponse) {
+    option (google.api.http).get = "/match/match/match_info/{id}";
+  
+  }
+  rpc MatchInfoAll (QueryAllMatchInfoRequest) returns (QueryAllMatchInfoResponse) {
+    option (google.api.http).get = "/match/match/match_info";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetMatchInfoRequest {
+  uint64 id = 1;
+}
+
+message QueryGetMatchInfoResponse {
+  MatchInfo MatchInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMatchInfoRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMatchInfoResponse {
+  repeated MatchInfo                              MatchInfo  = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

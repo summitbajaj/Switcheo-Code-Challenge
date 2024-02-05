@@ -1,0 +1,12 @@
+syntax = "proto3";
+package match.match;
+
+option go_package = "match/x/match/types";
+
+message MatchInfo {
+  uint64 id = 1;
+  string matchdate = 2; 
+  string home = 3; 
+  string away = 4; 
+  string creator = 5;
+}
