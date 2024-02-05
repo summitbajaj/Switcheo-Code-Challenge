@@ -1,6 +1,15 @@
 # match
 **match** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
+# About
+Match is a simple blockchain that stores information related to football games. It contains the following attributes:
+1. Date (Date of the Match)
+2. Home (Home Team)
+3. Away (Away Team)
+
+As per thr requirement, this is a CRUD interface.
+
+
 ## Get started
 
 ```
