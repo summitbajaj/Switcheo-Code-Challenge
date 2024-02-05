@@ -19,7 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/match.match.Msg/UpdateParams"
+	Msg_UpdateParams_FullMethodName    = "/match.match.Msg/UpdateParams"
+	Msg_CreateMatchInfo_FullMethodName = "/match.match.Msg/CreateMatchInfo"
+	Msg_UpdateMatchInfo_FullMethodName = "/match.match.Msg/UpdateMatchInfo"
+	Msg_DeleteMatchInfo_FullMethodName = "/match.match.Msg/DeleteMatchInfo"
 )
 
 // MsgClient is the client API for Msg service.
@@ -29,6 +32,9 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateMatchInfo(ctx context.Context, in *MsgCreateMatchInfo, opts ...grpc.CallOption) (*MsgCreateMatchInfoResponse, error)
+	UpdateMatchInfo(ctx context.Context, in *MsgUpdateMatchInfo, opts ...grpc.CallOption) (*MsgUpdateMatchInfoResponse, error)
+	DeleteMatchInfo(ctx context.Context, in *MsgDeleteMatchInfo, opts ...grpc.CallOption) (*MsgDeleteMatchInfoResponse, error)
 }
 
 type msgClient struct {
@@ -48,6 +54,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateMatchInfo(ctx context.Context, in *MsgCreateMatchInfo, opts ...grpc.CallOption) (*MsgCreateMatchInfoResponse, error) {
+	out := new(MsgCreateMatchInfoResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateMatchInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateMatchInfo(ctx context.Context, in *MsgUpdateMatchInfo, opts ...grpc.CallOption) (*MsgUpdateMatchInfoResponse, error) {
+	out := new(MsgUpdateMatchInfoResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateMatchInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteMatchInfo(ctx context.Context, in *MsgDeleteMatchInfo, opts ...grpc.CallOption) (*MsgDeleteMatchInfoResponse, error) {
+	out := new(MsgDeleteMatchInfoResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteMatchInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -55,6 +88,9 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateMatchInfo(context.Context, *MsgCreateMatchInfo) (*MsgCreateMatchInfoResponse, error)
+	UpdateMatchInfo(context.Context, *MsgUpdateMatchInfo) (*MsgUpdateMatchInfoResponse, error)
+	DeleteMatchInfo(context.Context, *MsgDeleteMatchInfo) (*MsgDeleteMatchInfoResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -64,6 +100,15 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) CreateMatchInfo(context.Context, *MsgCreateMatchInfo) (*MsgCreateMatchInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMatchInfo not implemented")
+}
+func (UnimplementedMsgServer) UpdateMatchInfo(context.Context, *MsgUpdateMatchInfo) (*MsgUpdateMatchInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMatchInfo not implemented")
+}
+func (UnimplementedMsgServer) DeleteMatchInfo(context.Context, *MsgDeleteMatchInfo) (*MsgDeleteMatchInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMatchInfo not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -96,6 +141,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateMatchInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateMatchInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateMatchInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateMatchInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateMatchInfo(ctx, req.(*MsgCreateMatchInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateMatchInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateMatchInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateMatchInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateMatchInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateMatchInfo(ctx, req.(*MsgUpdateMatchInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteMatchInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteMatchInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteMatchInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteMatchInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteMatchInfo(ctx, req.(*MsgDeleteMatchInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -106,6 +205,18 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateMatchInfo",
+			Handler:    _Msg_CreateMatchInfo_Handler,
+		},
+		{
+			MethodName: "UpdateMatchInfo",
+			Handler:    _Msg_UpdateMatchInfo_Handler,
+		},
+		{
+			MethodName: "DeleteMatchInfo",
+			Handler:    _Msg_DeleteMatchInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
